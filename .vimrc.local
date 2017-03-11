@@ -1,0 +1,85 @@
+" Mappings ------- {{{
+inoremap jk <esc>
+nnoremap + ddkP
+nnoremap - ddp
+inoremap <c-u> <esc>viwUea
+inoremap <c-v> <c-r>"
+" Open this file in a new pane
+nnoremap <leader>ev :vsplit ~/.vimrc.local<cr>
+" Highlight trailing whitespace
+nnoremap <leader>w :match Error /\v\s+$/<cr>
+nnoremap <leader>W :match Error ""<cr>
+" Always search in very magic mode (ie normal regex)
+nnoremap / /\v
+nnoremap <leader><space> i<space><esc>l
+" Search for current word with silver searcher
+nnoremap <leader>G :Ag<cr>
+
+" Toggle booleans
+nnoremap <leader>! :call ToggleBoolean(expand("<cword>"))<cr>
+
+function! ToggleBoolean(bool)
+  if a:bool ==# 'true'
+    execute "normal! ciwfalse"
+  elseif a:bool ==# 'false'
+    execute "normal! ciwtrue"
+  endif
+endfunction
+" }}}
+" Abbreviations ------- {{{
+iabbrev funciton function
+iabbrev fucniton function
+" " }}}
+" Ruby abbeviations ------- {{{
+augroup filetype_ruby
+  autocmd!
+  autocmd FileType ruby :iabbrev <buffer> debugger binding.pry
+augroup END
+" }}}
+" Vimscript file settings --------- {{{
+augroup filetype_vim
+  autocmd!
+  autocmd FileType vim setlocal foldmethod=marker
+augroup end
+" }}}
+" General -------- {{{
+set noswapfile
+
+if has('gui_running')
+  if getcwd() =~ '/policygenius'
+    colorscheme atom
+  elseif getcwd() =~ '/umbrella'
+    colorscheme herokudoc
+  elseif getcwd() =~ '/health'
+    colorscheme herokudoc
+  elseif getcwd() =~ '/policygenius-ui'
+    colorscheme habilight
+  elseif getcwd() =~ '/briefcase'
+    colorscheme tomorrow-night-eighties
+  endif
+endif
+" }}}
+" Totoro! --------- {{{
+:echo "\n"
+:echo '                               !         !             '
+:echo '                              ! !       ! !            '
+:echo '                             ! . !     ! . !           '
+:echo '                             ^  ^^^^^^^^^  ^           '
+:echo '                           ^                 ^         '
+:echo '                          ^   (0)       (0)   ^        '
+:echo '                          ^        ''         ^        '
+:echo '                         ^   ***************    ^      '
+:echo '                       ^   *                 *   ^     '
+:echo '                      ^   *   /\   /\   /\    *    ^   '
+:echo '                     ^   *                     *    ^  '
+:echo '                    ^   *   /\   /\   /\   /\   *    ^ '
+:echo '                   ^   *                         *    ^'
+:echo '                   ^  *                           *   ^'
+:echo '                   ^  *                           *   ^'
+:echo '                    ^ *                           *  ^ '
+:echo '                     ^*                           * ^  '
+:echo '                      ^ *                        * ^   '
+:echo '                      ^  *                      *  ^   '
+:echo '                        ^  *       ) (         * ^     '
+:echo "                            ^^^^^^^^ ^^^^^^^^^\r       "
+" }}}
