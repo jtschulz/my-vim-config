@@ -15,7 +15,7 @@ This is my local vim config, built on top of pivotal's vim-config with some chan
 2. Symlink the `.vimrc.local` in this project to `~/.vimrc.local`:
 
   ```
-  ln -s ./.vimrc.local ~/.vimrc.local
+  ln -s $(pwd)/.vimrc.local ~/.vimrc.local
   ```
 
 Enjoy!
