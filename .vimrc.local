@@ -36,6 +36,18 @@ augroup filetype_ruby
   autocmd FileType ruby :iabbrev <buffer> debugger binding.pry
 augroup END
 " }}}
+" Python abbreviations ------- {{{
+augroup filetype_python
+  autocmd!
+  " copy the name of the current module to clipboard (relative to pwd)
+  if has("mac") || has("gui_macvim") || has("gui_mac")
+    autocmd FileType python :nnoremap <silent> <leader>P :let @*=join(split(expand("%:r"), "/"), ".")<CR>
+  endif
+  if has("gui_gtk") || has("gui_gtk2") || has("gui_gnome") || has("unix")
+    autocmd FileType python :nnoremap <silent> <leader>P :let @+=join(split(expand("%:r"), "/"), ".")<CR>
+  endif
+augroup END
+" }}}
 " Vimscript file settings --------- {{{
 augroup filetype_vim
   autocmd!
@@ -44,42 +56,14 @@ augroup end
 " }}}
 " General -------- {{{
 set noswapfile
+nnoremap <silent> <Leader>c :let @+ = expand("%")<CR>
+nnoremap <silent> <Leader>C :let @+ = expand("%") . ":" . line(".")<CR>
 
 if has('gui_running')
-  if getcwd() =~ '/policygenius'
+  if getcwd() =~ '/backend-python'
     colorscheme atom
-  elseif getcwd() =~ '/umbrella'
-    colorscheme herokudoc
-  elseif getcwd() =~ '/health'
-    colorscheme herokudoc
-  elseif getcwd() =~ '/policygenius-ui'
-    colorscheme habilight
-  elseif getcwd() =~ '/briefcase'
-    colorscheme tomorrow-night-eighties
+  elseif getcwd() =~ '/apps/react'
+    colorscheme molokai
   endif
 endif
-" }}}
-" Totoro! --------- {{{
-:echo "\n"
-:echo '                               !         !             '
-:echo '                              ! !       ! !            '
-:echo '                             ! . !     ! . !           '
-:echo '                             ^  ^^^^^^^^^  ^           '
-:echo '                           ^                 ^         '
-:echo '                          ^   (0)       (0)   ^        '
-:echo '                          ^        ''         ^        '
-:echo '                         ^   ***************    ^      '
-:echo '                       ^   *                 *   ^     '
-:echo '                      ^   *   /\   /\   /\    *    ^   '
-:echo '                     ^   *                     *    ^  '
-:echo '                    ^   *   /\   /\   /\   /\   *    ^ '
-:echo '                   ^   *                         *    ^'
-:echo '                   ^  *                           *   ^'
-:echo '                   ^  *                           *   ^'
-:echo '                    ^ *                           *  ^ '
-:echo '                     ^*                           * ^  '
-:echo '                      ^ *                        * ^   '
-:echo '                      ^  *                      *  ^   '
-:echo '                        ^  *       ) (         * ^     '
-:echo "                            ^^^^^^^^ ^^^^^^^^^\r       "
 " }}}
